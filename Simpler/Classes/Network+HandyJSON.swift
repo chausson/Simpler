@@ -10,22 +10,9 @@ import Foundation
 import HandyJSON
 import Result
 
-public final class HandyResponse<Type:HandyJSON>:Simpler.Response{
-    public var jsonModel: Type?{
-        get{
-            guard let obj = Type.deserialize(from: self.jsonString) else {
-                return nil
-            }
-            return obj
-            
-        }
-    }
-
-}
-
-extension CHNetBuilder{
+public final class Handyer<ResultType:HandyJSON>:Simpler<ResultType>{
     public typealias HandyCompletion = (_ result: Result<HandyResponse<R>,Error>) -> ()
-
+    
     @discardableResult
     open func requestJSON(_ completion: @escaping HandyCompletion) -> DataRequest{
         let dataRequest =  self.requestNormal(self.target) { (result) in
@@ -39,4 +26,19 @@ extension CHNetBuilder{
         }
         return  dataRequest
     }
+    
+    
 }
+public final class HandyResponse<Type:HandyJSON>:Response{
+    public var jsonModel: Type?{
+        get{
+            guard let obj = Type.deserialize(from: self.jsonString) else {
+                return nil
+            }
+            return obj
+            
+        }
+    }
+
+}
+

@@ -11,7 +11,7 @@ import Foundation
 private var headerFields:[String: String]?
 private var allParms:[String: Any]?
 
-public protocol CHNetConfigable {
+public protocol SimplerConfigable {
     var baseURL: String { get }
     var httpHeaderFields: [String: String]{ get }
     var commonParameters: [String: Any] { get }
@@ -20,7 +20,7 @@ public protocol CHNetConfigable {
 
 //    var commonRequestClosure:()->Void{ get }
 }
-public extension CHNetConfigable{
+public extension SimplerConfigable{
     var allHttpHeaderFields:[String: String] {
         var newHeader = headerFields ?? [String: String]()
         self.httpHeaderFields.forEach { (key, value) in
@@ -36,7 +36,7 @@ public extension CHNetConfigable{
         return newParms
     }
 }
-public extension CHNetConfigable{
+public extension SimplerConfigable{
     @discardableResult
     func add(_ httpHeaderFields:[String: String]) -> Bool {
         guard let headers:[String:String] = httpHeaderFields, headers.isEmpty == false else {

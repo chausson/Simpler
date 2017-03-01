@@ -19,14 +19,14 @@ class ViewController: UIViewController {
         jsonRequest()
     }
     func normalRequest() {
-        CHNetBuilder<User>(l).request { result in
+        Simpler<User>(l).request { result in
             if case let .success(response) = result {
                 print("\nStr = \(response.jsonString) +\nObj = \(response.json)")
             }
         }
     }
     func jsonRequest() {
-        CHNetBuilder<User>(l).requestJSON { (result) in
+        Handyer<User>(l).requestJSON { (result) in
             if case let .success(response) = result {
                 print("\nStr = \(response.jsonString) +\nObj = \(response.jsonModel?.code)")
             }

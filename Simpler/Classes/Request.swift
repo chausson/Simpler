@@ -13,7 +13,7 @@ import Alamofire
 public typealias HTTPMethod = Alamofire.HTTPMethod
 public typealias Manager = Alamofire.SessionManager
 public typealias URLEncoding = Alamofire.URLEncoding
-public protocol CHRequestable:CHNetConfigable{
+public protocol CHRequestable:SimplerConfigable{
     /// Request Path append path to host
     var path: String { get }
     

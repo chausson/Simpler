@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Simpler'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Network framework base on Alamofire in Swift'
 
   s.homepage         = 'https://github.com/chausson/Simpler'

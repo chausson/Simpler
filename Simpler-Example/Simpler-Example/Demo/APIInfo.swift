@@ -9,12 +9,11 @@
 import Foundation
 import Simpler
 let config = Config()
-struct Config:CHNetConfigable {
+struct Config:SimplerConfigable {
     
 }
 
-
-extension CHNetConfigable {
+extension SimplerConfigable {
     var baseURL:String{
         return "http://egarage.dev.sudaotech.com/platform/"
     }

@@ -13,7 +13,7 @@ public typealias ParameterEncoding = Alamofire.ParameterEncoding
 
 public typealias DataRequest = Alamofire.DataRequest
 
-public extension CHNetBuilder{
+public extension Simpler{
     typealias ResponseHandler = (DefaultDataResponse) -> Void
     func requestNormal(_ target:CHRequestable,_ completion: @escaping Completion) -> DataRequest{
         

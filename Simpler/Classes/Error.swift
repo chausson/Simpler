@@ -11,9 +11,9 @@ public enum Error: Swift.Error {
     case requestMapping(String)
 }
 
-public extension Simpler.Error {
+public extension Error {
     /// Depending on error type, returns a `Response` object.
-    var response: Simpler.Response? {
+    var response: Response? {
         switch self {
         case .imageMapping(let response): return response
         case .jsonMapping(let response): return response

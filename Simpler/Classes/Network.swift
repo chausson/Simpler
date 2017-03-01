@@ -10,13 +10,13 @@ import Foundation
 import Result
 import HandyJSON
 
-open class CHNetBuilder<ResultType:HandyJSON>{
+open class Simpler<Target>{
     
     public typealias Completion = (_ result: Result<Response,Error>) -> ()
     
     public typealias RequestResult = () -> Void
     
-    public typealias R = ResultType
+    public typealias R = Target
 
     open let target: CHRequestable
 
@@ -31,17 +31,21 @@ open class CHNetBuilder<ResultType:HandyJSON>{
         
     }
 }
+protocol Resultable {
+    associatedtype resultType //声明一个关联类型
+    
+}
 public func serializeResponse(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Swift.Error?) ->
     Result<Response,Error>{
         switch (response, data, error) {
         case let (.some(response), data, .none):
-            let response = Simpler.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
+            let response = Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
             return .success(response)
         case let (_, _, .some(error)):
-            let error = Simpler.Error.underlying(error)
+            let error = Error.underlying(error)
             return .failure(error)
         default:
-            let error = Simpler.Error.underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil))
+            let error = Error.underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil))
             return .failure(error)
         }
 }
