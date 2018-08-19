@@ -7,13 +7,12 @@
 //
 
 import Foundation
-import Alamofire
-/// Represents an HTTP method.
 
-public typealias HTTPMethod = Alamofire.HTTPMethod
-public typealias Manager = Alamofire.SessionManager
-public typealias URLEncoding = Alamofire.URLEncoding
-public protocol CHRequestable:SimplerConfigable{
+
+public protocol CHRequestable{
+    /// return  Object of type
+    associatedtype R
+
     /// Request Path append path to host
     var path: String { get }
     

@@ -10,9 +10,10 @@ import Foundation
 import Simpler
 import HandyJSON
 
-struct Login:CHRequestable {
+struct LoginRequest<Type>:CHRequestable,SimplerConfigable {
     var userName:String?
     var password:String?
+    typealias R = Type
 
     init(userName:String,password:String) {
         self.userName = userName
@@ -23,7 +24,7 @@ struct Login:CHRequestable {
                     "password":password]
         return parm
     }
-    //    var method: HTTPMethod = .post
+//    var method: HTTPMethod = .post
     var path: String = "basic/country"
     
 }

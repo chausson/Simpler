@@ -13,6 +13,8 @@ public class Response:CustomDebugStringConvertible,Equatable{
     public let data: Data
     public let request: URLRequest?
     public let response: URLResponse?
+    public let requestParm: [String : Any]?
+
     public var json: Dictionary<String,Any>?{
         get{
             let json = try? self.mapJSON() as! Dictionary<String,Any>
@@ -26,7 +28,8 @@ public class Response:CustomDebugStringConvertible,Equatable{
         }
     }
     
-    public init(statusCode: Int, data: Data, request: URLRequest? = nil, response: URLResponse? = nil) {
+    public init(statusCode: Int, data: Data, request: URLRequest? = nil, response: URLResponse? = nil, requestParm:[String:Any]? = nil) {
+        self.requestParm = requestParm
         self.statusCode = statusCode
         self.data = data
         self.request = request
@@ -34,7 +37,7 @@ public class Response:CustomDebugStringConvertible,Equatable{
     }
     
     public var description: String {
-        return "Status Code: \(statusCode), Data Length: \(data.count)"
+        return "\n[Request Path: \(self.request?.url?.absoluteString)],\n[Request Parm : \(self.requestParm)],\n[Status Code :\(statusCode)]"
     }
     
     public var debugDescription: String {
